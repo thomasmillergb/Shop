@@ -11,7 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
-
+    // Scanner Test in reader.ScannerTest
+    // Provide String of items ("apple,orange.ect")
     public static void main(String[] args) {
         if (args.length > 0) {
             //Set bucket to 10 to improve hashmap perforce

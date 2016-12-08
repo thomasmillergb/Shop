@@ -42,6 +42,11 @@ public class ScannerTest {
 
     }
     @Test
+    public void scanAppleCap(){
+        Assert.assertEquals(new BigDecimal("0.60"),scanner_.scan("Apple").setScale(2));
+
+    }
+    @Test
     public void scanOrange(){
         Assert.assertEquals(new BigDecimal("0.25"),scanner_.scan("orange").setScale(2));
 
