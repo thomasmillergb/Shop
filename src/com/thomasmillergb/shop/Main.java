@@ -14,18 +14,16 @@ public class Main {
 
     public static void main(String[] args) {
         if (args.length > 0) {
-            Map<String, Item> items;
-            Map<Item, Offer> offers;
-            Scanner scanner;
-            items = new HashMap<>();
-            offers = new HashMap<>();
+            //Set bucket to 10 to improve hashmap perforce
+            Map<String, Item> items = new HashMap<>(10);
+            Map<Item, Offer> offers = new HashMap<>(10);
             Item apple = new Item("apple", new BigDecimal("0.60"));
             Item orange = new Item("orange", new BigDecimal("0.25"));
             items.put("apple", apple);
             items.put("orange", orange);
             offers.put(apple, new BuyOneGetOneFree(apple));
             offers.put(orange, new BuyTwoGetOneFree(orange));
-            scanner = new Scanner(items, offers);
+            Scanner  scanner = new Scanner(items, offers);
 
             scanner.scan(args[0]);
         }

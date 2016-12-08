@@ -20,9 +20,15 @@ public class Scanner {
         offer_ = offer;
     }
 
+    /**
+     *
+     * @param items the input of items which have been sold
+     * @return the total balance
+     */
     public BigDecimal scan(String items) {
         List<Item> soldItems = Parser.parseItems(avliableItems_, items);
-        Map<Item, Integer> sumItems = new HashMap<>();
+        //Set bucket to 10 to improve hashmap perforce
+        Map<Item, Integer> sumItems = new HashMap<>(10);
         soldItems.forEach(item -> sumSoldItem(sumItems, item));
         System.out.println("Sold Items: " +sumItems);
         BigDecimal totalOutstandingBalance = totalOutstandingBalance(sumItems);
@@ -30,6 +36,11 @@ public class Scanner {
         return totalOutstandingBalance;
     }
 
+    /**
+     *
+     * @param soldItems a map of sold items
+     * @return the total outstanding balance
+     */
     private BigDecimal totalOutstandingBalance(Map<Item, Integer> soldItems) {
         BigDecimal totalBalance = new BigDecimal(0);
         for (Item item : soldItems.keySet()) {
@@ -51,6 +62,11 @@ public class Scanner {
 //                .get();
 //    }
 
+    /**
+     *
+     * @param map a map of the sold items
+     * @param item the item to sum
+     */
     private void sumSoldItem(Map<Item, Integer> map, Item item) {
         if (map.containsKey(item)) {
             map.put(item, map.get(item) + 1);

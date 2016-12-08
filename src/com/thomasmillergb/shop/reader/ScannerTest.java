@@ -15,6 +15,7 @@ import java.util.*;
 /**
  * @author Thomas
  *         Created by Thomas on 07/12/2016.
+ *         Some tests to make sure the app fits the spec
  */
 public class ScannerTest {
 
@@ -24,8 +25,9 @@ public class ScannerTest {
 
     @Before
     public void setUp(){
-        items_ = new HashMap<>();
-        offers_ = new HashMap<>();
+        //Set buckget to 10 to improve hashmap performce
+        items_ = new HashMap<>(10);
+        offers_ = new HashMap<>(10);
         Item apple = new Item("apple", new BigDecimal("0.60"));
         Item orange = new Item("orange", new BigDecimal("0.25"));
         items_.put("apple",apple);
