@@ -1,6 +1,8 @@
 package com.thomasmillergb.shop.offer;
 
 import com.thomasmillergb.shop.item.Item;
+import com.thomasmillergb.shop.reader.Scanner;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 

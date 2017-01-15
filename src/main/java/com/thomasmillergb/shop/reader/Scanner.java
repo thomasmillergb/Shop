@@ -8,43 +8,56 @@ import java.math.BigDecimal;
 import java.util.*;
 
 /**
- * @author Thomas
- *         Created by Thomas on 07/12/2016.
+ * @author Thomas Created by Thomas on 07/12/2016.
  */
-public class Scanner {
+public class Scanner
+{
 
     private final static Logger LOGGER = Logger.getLogger(Scanner.class);
     private Map<String, Item> avliableItems_;
     private Map<Item, Offer> offer_;
 
 
-    public Scanner(Map<String, Item> avliableItems, Map<Item, Offer> offer) {
-        avliableItems_ = avliableItems;
-        offer_ = offer;
+    public Scanner()
+    {
+        avliableItems_ = new HashMap<>(10);
+        offer_ = new HashMap<>(10);
+
     }
 
+    public void addAvliableItem(String key, Item item)
+    {
+        avliableItems_.put(key, item);
+    }
+
+    public void addOffer(Item item, Offer offer)
+    {
+        offer_.put(item, offer);
+    }
+
+
     /**
-     *
      * @param items the input of items which have been sold
      * @return the total balance
      */
-    public BigDecimal scan(String items) {
+    public BigDecimal scan(String items)
+    {
         List<Item> soldItems = Parser.parseItems(avliableItems_, items);
         //Set bucket to 10 to improve hashmap perforce
         Map<Item, Integer> sumItems = new HashMap<>(10);
         soldItems.forEach(item -> sumSoldItem(sumItems, item));
-        LOGGER.info("Sold Items: " +sumItems);
+        LOGGER.info("Sold Items: " + sumItems);
         BigDecimal totalOutstandingBalance = totalOutstandingBalance(sumItems);
-        LOGGER.info("Outstanding Balance: " +totalOutstandingBalance);
+        LOGGER.info("Outstanding Balance: " + totalOutstandingBalance);
         return totalOutstandingBalance;
     }
 
     /**
-     *
      * @param soldItems a map of sold items
      * @return the total outstanding balance
      */
-    private BigDecimal totalOutstandingBalance(Map<Item, Integer> soldItems) {
+    private BigDecimal totalOutstandingBalance(Map<Item, Integer> soldItems)
+    {
         BigDecimal totalBalance = new BigDecimal(0);
         for (Item item : soldItems.keySet()) {
             Integer sold = soldItems.get(item);
@@ -66,11 +79,11 @@ public class Scanner {
 //    }
 
     /**
-     *
-     * @param map a map of the sold items
+     * @param map  a map of the sold items
      * @param item the item to sum
      */
-    private void sumSoldItem(Map<Item, Integer> map, Item item) {
+    private void sumSoldItem(Map<Item, Integer> map, Item item)
+    {
         if (map.containsKey(item)) {
             map.put(item, map.get(item) + 1);
         } else {

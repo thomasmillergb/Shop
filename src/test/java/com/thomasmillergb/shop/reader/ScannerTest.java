@@ -26,15 +26,13 @@ public class ScannerTest {
     @Before
     public void setUp(){
         //Set buckget to 10 to improve hashmap performce
-        items_ = new HashMap<>(10);
-        offers_ = new HashMap<>(10);
+        Scanner  scanner = new Scanner();
         Item apple = new Item("apple", new BigDecimal("0.60"));
         Item orange = new Item("orange", new BigDecimal("0.25"));
-        items_.put("apple",apple);
-        items_.put("orange", orange);
-        offers_.put(apple, new BuyOneGetOneFree(apple));
-        offers_.put(orange, new BuyTwoGetOneFree(orange));
-        scanner_ = new Scanner(items_, offers_);
+        scanner.addAvliableItem("apple", apple);
+        scanner.addAvliableItem("orange", orange);
+        scanner.addOffer(apple, new BuyOneGetOneFree(apple));
+        scanner.addOffer(orange, new BuyTwoGetOneFree(orange));
     }
     @Test
     public void scanApple(){
