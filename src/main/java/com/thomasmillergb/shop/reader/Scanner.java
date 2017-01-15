@@ -2,6 +2,7 @@ package com.thomasmillergb.shop.reader;
 
 import com.thomasmillergb.shop.item.Item;
 import com.thomasmillergb.shop.offer.Offer;
+import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -12,8 +13,10 @@ import java.util.*;
  */
 public class Scanner {
 
+    private final static Logger LOGGER = Logger.getLogger(Scanner.class);
     private Map<String, Item> avliableItems_;
     private Map<Item, Offer> offer_;
+
 
     public Scanner(Map<String, Item> avliableItems, Map<Item, Offer> offer) {
         avliableItems_ = avliableItems;
@@ -30,9 +33,9 @@ public class Scanner {
         //Set bucket to 10 to improve hashmap perforce
         Map<Item, Integer> sumItems = new HashMap<>(10);
         soldItems.forEach(item -> sumSoldItem(sumItems, item));
-        System.out.println("Sold Items: " +sumItems);
+        LOGGER.info("Sold Items: " +sumItems);
         BigDecimal totalOutstandingBalance = totalOutstandingBalance(sumItems);
-        System.out.println("Outstanding Balance: " +totalOutstandingBalance);
+        LOGGER.info("Outstanding Balance: " +totalOutstandingBalance);
         return totalOutstandingBalance;
     }
 

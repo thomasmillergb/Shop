@@ -5,12 +5,14 @@ import com.thomasmillergb.shop.offer.BuyOneGetOneFree;
 import com.thomasmillergb.shop.offer.BuyTwoGetOneFree;
 import com.thomasmillergb.shop.offer.Offer;
 import com.thomasmillergb.shop.reader.Scanner;
+import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
+    private final static Logger LOGGER = Logger.getLogger(Main.class);
     // Scanner Test in reader.ScannerTest
     // Provide String of items ("apple,orange.ect")
     public static void main(String[] args) {
@@ -29,7 +31,7 @@ public class Main {
             scanner.scan(args[0]);
         }
         else{
-            System.out.println("Need items!");
+            LOGGER.warn("Need items!");
         }
     }
 
